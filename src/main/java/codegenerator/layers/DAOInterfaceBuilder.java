@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.lang.model.element.Modifier;
-
 import org.springframework.stereotype.Repository;
 
 import com.squareup.javapoet.MethodSpec;
@@ -29,13 +27,14 @@ public class DAOInterfaceBuilder extends CommonFileGenerator {
 			MethodSpec... methodSpecs) {
 
 		String finalClassName = className + fileType.getClassSuffix();
-		com.squareup.javapoet.TypeSpec.Builder classBuilder = TypeSpec.interfaceBuilder(finalClassName);
+		com.squareup.javapoet.TypeSpec.Builder classBuilder = TypeSpec.classBuilder(finalClassName);
 
-		classBuilder.addModifiers(Modifier.PUBLIC);
+		//classBuilder.addModifiers(Modifier.PUBLIC);
 		// classBuilder.addField(type, name, modifiers)
 		for (MethodSpec method : methodSpecs) {
 
-			//classBuilder.addMethod(method);
+
+			classBuilder.addMethod(method);
 		}
 
 		return classBuilder;
@@ -44,7 +43,7 @@ public class DAOInterfaceBuilder extends CommonFileGenerator {
 	}
 
 
-	public void createFile( String className, ProjectFileType fileType) throws IOException{
+	public void createFile( ProjectFileType fileType) throws IOException{
 
 		MethodSpec method1 = FileUtil.createMethod("save");
 		MethodSpec method2 = FileUtil.createMethod("update");
@@ -63,13 +62,13 @@ public class DAOInterfaceBuilder extends CommonFileGenerator {
 	}
 
 	@Override
-	void addMethodAnnotation(Builder builder) {
+	public  void addMethodAnnotation(Builder builder) {
 
 
 	}
 
 	@Override
-	void addClassAnnotation(Builder classBuilder) {
+	public  void addClassAnnotation(Builder classBuilder) {
 		classBuilder.addAnnotation(Repository.class);
 	}
 

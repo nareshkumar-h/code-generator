@@ -16,8 +16,8 @@ public class TestFileUtil {
 
 		layerObj.cleanRootPackage();
 		layerObj.createClass( "User");
-		//layerObj.createClass("Employee");
-		//layerObj.createClass( "Ticket");
+		layerObj.createClass("Employee");
+		layerObj.createClass( "Ticket");
 	}
 
 }

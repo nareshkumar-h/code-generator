@@ -21,6 +21,7 @@ public class LayerBuilder {
 
 
 	private String rootPackage;
+	private String testPackage;
 
 	public LayerBuilder(String rootPackage, String className) {
 		this.rootPackage = rootPackage;
@@ -42,20 +43,24 @@ public class LayerBuilder {
 		RepositoryInterfaceBuilder repoB = new RepositoryInterfaceBuilder(rootPackage, className);
 		RepositoryImplBuilder repoImplB = new RepositoryImplBuilder(rootPackage, className);
 
-		modelB.createFile(className , ProjectFileType.MODEL);
-		serviceB.createFile( className, ProjectFileType.SERVICE);
-		validatorB.createFile( className, ProjectFileType.VALIDATOR);
-		controllerB.createFile(className, ProjectFileType.CONTROLLER);
+		modelB.createFile(ProjectFileType.MODEL);
+		serviceB.createFile( ProjectFileType.SERVICE);
+		validatorB.createFile( ProjectFileType.VALIDATOR);
+		controllerB.createFile(ProjectFileType.CONTROLLER);
 
-		daoInterfaceB.createFile( className, ProjectFileType.DAO);
-		daoB.createFile( className, ProjectFileType.DAO_IMPL);
-		dtoB.createFile( className, ProjectFileType.DTO);
-		repoB.createFile(className, ProjectFileType.REPOSITORY);
+		daoInterfaceB.createFile( ProjectFileType.DAO);
+		daoB.createFile(  ProjectFileType.DAO_IMPL);
+		dtoB.createFile( ProjectFileType.DTO);
+		repoB.createFile(ProjectFileType.REPOSITORY);
 
-		repoImplB.createFile(className, ProjectFileType.REPOSITORY_IMPL);
+		repoImplB.createFile(ProjectFileType.REPOSITORY_IMPL);
 
-		restControllerB.createFile(className, ProjectFileType.RESTCONTROLLER);
+		restControllerB.createFile(ProjectFileType.RESTCONTROLLER);
 
+/*
+		//Test Classes
+		TestModelBuilder mb= new TestModelBuilder(rootPackage,className);
+		mb.createFile(className, ProjectFileType.TEST_MODEL);*/
 
 	}
 

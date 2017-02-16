@@ -8,7 +8,8 @@ public enum ProjectFileType {
 	DAO("dao", "DAO"),
 	DAO_IMPL("dao.impl", "Impl"),SERVICE("service", "Service"),DTO("dto", "DTO"),
 	REPOSITORY("dao", "Repository"),
-	REPOSITORY_IMPL("dao.impl", "RepositoryImpl");
+	REPOSITORY_IMPL("dao.impl", "RepositoryImpl"),
+	TEST_MODEL("model", "");
 
 	private String packageName;
 	private String classSuffix;

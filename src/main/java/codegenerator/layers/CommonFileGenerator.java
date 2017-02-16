@@ -19,6 +19,8 @@ public abstract class CommonFileGenerator {
 
 	public static String rootDir = "src/main/java/";
 
+	public static String testDir = "src/test/java/";
+
 	protected String rootPackage;
 
 	protected String className;
@@ -103,9 +105,9 @@ public abstract class CommonFileGenerator {
 
 	}
 
-	abstract void addMethodAnnotation(Builder builder);
+	protected abstract void addMethodAnnotation(Builder builder);
 
-	abstract void addClassAnnotation(Builder builder);
+	protected abstract void addClassAnnotation(Builder builder);
 
 
 

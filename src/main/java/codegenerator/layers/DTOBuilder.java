@@ -15,7 +15,7 @@ public class DTOBuilder extends CommonFileGenerator {
 
 	}
 
-	public void createFile( String className, ProjectFileType fileType) throws IOException{
+	public void createFile( ProjectFileType fileType) throws IOException{
 
 
 		createJavaFile(fileType,rootPackage, className);
@@ -23,13 +23,13 @@ public class DTOBuilder extends CommonFileGenerator {
 	}
 
 	@Override
-	void addMethodAnnotation(Builder builder) {
+	public void addMethodAnnotation(Builder builder) {
 
 
 	}
 
 	@Override
-	void addClassAnnotation(Builder classBuilder) {
+	public void addClassAnnotation(Builder classBuilder) {
 		classBuilder.addAnnotation(Data.class);
 	}
 

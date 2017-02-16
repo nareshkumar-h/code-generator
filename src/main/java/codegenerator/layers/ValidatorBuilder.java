@@ -20,7 +20,7 @@ public class ValidatorBuilder extends CommonFileGenerator {
 
 	}
 
-	public void createFile( String className, ProjectFileType fileType) throws IOException{
+	public void createFile( ProjectFileType fileType) throws IOException{
 
 		MethodSpec method1 = FileUtil.createMethod("beforeSave");
 		MethodSpec method2 = FileUtil.createMethod("beforeUpdate");
@@ -39,13 +39,13 @@ public class ValidatorBuilder extends CommonFileGenerator {
 	}
 
 	@Override
-	void addMethodAnnotation(Builder builder) {
+	public void addMethodAnnotation(Builder builder) {
 
 
 	}
 
 	@Override
-	void addClassAnnotation(Builder classBuilder) {
+	public void addClassAnnotation(Builder classBuilder) {
 		classBuilder.addAnnotation(Component.class);
 	}
 
