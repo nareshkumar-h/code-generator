@@ -34,10 +34,8 @@ public class ServiceBuilder extends CommonFileGenerator{
 
 		MethodSpec method5 = FileUtil.createMethod("findById", Object.class, params);
 
-		Builder builder = createClass( fileType,rootPackage, className,method1,method2,method3,method4,method5);
-
 		//createClassFileWithContent(fileType, rootPackage, className, methodSpecs);
-		createJavaFile(fileType,rootPackage, className,method1,method2,method3,method4,method5);
+		createInterfaceJavaFile(fileType,rootPackage, className,method1,method2,method3,method4,method5);
 		System.out.println("File Creation Done");
 	}
 

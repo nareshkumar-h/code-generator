@@ -10,14 +10,14 @@ public class TestFileUtil {
 
 	public static void main(String[] args) throws IOException {
 
-		String rootPackage = "com.naresh";
+		String rootPackage = "com.selvi";
 
 		LayerBuilder layerObj = new LayerBuilder(rootPackage, "User");
 
 		layerObj.cleanRootPackage();
-		layerObj.createClass( "User");
-		layerObj.createClass("Employee");
-		layerObj.createClass( "Ticket");
+		layerObj.createClass( "Customer");
+	/*	layerObj.createClass("Medicine");
+		layerObj.createClass( "Order");*/
 	}
 
 }

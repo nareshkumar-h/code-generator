@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.lang.model.element.Modifier;
-
 import org.springframework.stereotype.Repository;
 
 import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
 import codegenerator.ProjectFileType;
@@ -24,25 +21,6 @@ public class RepositoryImplBuilder extends CommonFileGenerator {
 
 	}
 
-	@Override
-	public Builder createClass(ProjectFileType fileType, String packageName, String className,
-			MethodSpec... methodSpecs) {
-
-		String finalClassName = className + fileType.getClassSuffix();
-		com.squareup.javapoet.TypeSpec.Builder classBuilder = TypeSpec.interfaceBuilder(finalClassName);
-
-		classBuilder.addModifiers(Modifier.PUBLIC);
-
-		// classBuilder.addField(type, name, modifiers)
-		for (MethodSpec method : methodSpecs) {
-
-			//classBuilder.addMethod(method);
-		}
-
-		return classBuilder;
-
-
-	}
 
 
 	public void createFile( ProjectFileType fileType) throws IOException{

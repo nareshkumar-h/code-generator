@@ -8,11 +8,10 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
 import codegenerator.ProjectFileType;
-import codegenerator.util.FileUtil;
+import codegenerator.util.InterfaceFileUtil;
 
 public class DAOInterfaceBuilder extends CommonFileGenerator {
 
@@ -22,42 +21,23 @@ public class DAOInterfaceBuilder extends CommonFileGenerator {
 	}
 
 
-	@Override
-	public Builder createClass(ProjectFileType fileType, String packageName, String className,
-			MethodSpec... methodSpecs) {
-
-		String finalClassName = className + fileType.getClassSuffix();
-		com.squareup.javapoet.TypeSpec.Builder classBuilder = TypeSpec.classBuilder(finalClassName);
-
-		//classBuilder.addModifiers(Modifier.PUBLIC);
-		// classBuilder.addField(type, name, modifiers)
-		for (MethodSpec method : methodSpecs) {
-
-
-			classBuilder.addMethod(method);
-		}
-
-		return classBuilder;
-
-
-	}
 
 
 	public void createFile( ProjectFileType fileType) throws IOException{
 
-		MethodSpec method1 = FileUtil.createMethod("save");
-		MethodSpec method2 = FileUtil.createMethod("update");
+		MethodSpec method1 = InterfaceFileUtil.declareMethod("save");
+		MethodSpec method2 = InterfaceFileUtil.declareMethod("update");
 
 		Map<Class,String> params = new HashMap<Class,String>();
 		params.put(Long.class, "id");
 
-		MethodSpec method3 = FileUtil.createMethod("delete", params);
-		MethodSpec method4 = FileUtil.createMethod("findAll", List.class);
+		MethodSpec method3 = InterfaceFileUtil.declareMethod("delete", params);
+		MethodSpec method4 = InterfaceFileUtil.declareMethod("findAll", List.class);
 
 
 
-		MethodSpec method5 = FileUtil.createMethod("findById", Object.class, params);
-		createJavaFile(fileType,rootPackage, className,method1,method2,method3,method4,method5);
+		MethodSpec method5 = InterfaceFileUtil.declareMethod("findById", params,  Object.class);
+		createInterfaceJavaFile(fileType,rootPackage, className,method1,method2,method3,method4,method5);
 		System.out.println("File Creation Done");
 	}
 

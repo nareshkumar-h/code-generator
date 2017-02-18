@@ -60,6 +60,40 @@ public class FileUtil {
 		return method;
 	}
 
+	public static Builder createMethodBuilder(String methodName) {
+
+		return createMethodBuilder(methodName, false, null, null);
+	}
+
+	public static Builder createMethodBuilder(String methodName, boolean isStatic, Class clazz, Map<Class, String> params) {
+
+		Builder builder = MethodSpec.methodBuilder(methodName).addModifiers(Modifier.PUBLIC);
+		if (isStatic) {
+			builder.addModifiers(Modifier.STATIC);
+		}
+		if (clazz == null) {
+			builder.returns(void.class);
+		} else {
+			builder.addStatement("return null");
+			builder.returns(clazz);
+		}
+		if (params != null) {
+			for (Class paramclazz : params.keySet()) {
+				String value = params.get(paramclazz);
+				builder.addParameter(paramclazz, value);
+			}
+		}
+		return builder;
+	}
+
+	public static Builder createMethodBuilder(String methodName, Map<Class, String> params) {
+		return createMethodBuilder(methodName, null, params);
+	}
+
+	public static Builder createMethodBuilder(String methodName, Class clazz) {
+		return createMethodBuilder(methodName, clazz, null);
+	}
+
 	public static Builder createMethodBuilder(String methodName, Class clazz, Map<Class, String> params) {
 
 		Builder builder = MethodSpec.methodBuilder(methodName).addModifiers(Modifier.PUBLIC);
@@ -67,7 +101,7 @@ public class FileUtil {
 		if (clazz == null) {
 			builder.returns(void.class);
 		} else {
-			builder.addStatement("return null");
+		//	builder.addStatement("return null");
 			builder.returns(clazz);
 		}
 		if (params != null) {

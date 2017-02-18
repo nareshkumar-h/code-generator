@@ -14,6 +14,7 @@ import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
 import codegenerator.ProjectFileType;
+import codegenerator.util.InterfaceFileUtil;
 
 public abstract class CommonFileGenerator {
 
@@ -52,6 +53,16 @@ public abstract class CommonFileGenerator {
 			MethodSpec... methodSpecs){
 
 		Builder classBuilder = createClass(fileType, packageName, className, methodSpecs);
+		addClassAnnotation(classBuilder);
+
+		JavaFile javaFile = getContent(fileType, packageName, classBuilder);
+		return javaFile.toString();
+	}
+
+	private String createInterfaceFileWithContent(ProjectFileType fileType, String packageName, String className,
+			MethodSpec... methodSpecs){
+
+		Builder classBuilder = InterfaceFileUtil.createInterface(fileType, packageName, className, methodSpecs);
 		addClassAnnotation(classBuilder);
 
 		JavaFile javaFile = getContent(fileType, packageName, classBuilder);
@@ -105,9 +116,9 @@ public abstract class CommonFileGenerator {
 
 	}
 
-	protected abstract void addMethodAnnotation(Builder builder);
+	protected void addMethodAnnotation(Builder builder){};
 
-	protected abstract void addClassAnnotation(Builder builder);
+	protected  void addClassAnnotation(Builder builder){};
 
 
 
@@ -115,6 +126,7 @@ public abstract class CommonFileGenerator {
 	public void createJavaFile(ProjectFileType fileType, String packageName, String className, MethodSpec... methodSpecs)
 			throws IOException {
 
+		System.out.println("Going to create class :" + packageName + className );
 		String content = createClassFileWithContent(fileType,packageName, className, methodSpecs);
 		String fileName = getFileName(fileType, packageName, className);
 		Path path = Paths.get(fileName);
@@ -122,9 +134,24 @@ public abstract class CommonFileGenerator {
 		Files.createDirectories(path.getParent());
 
 		Files.write(path, content.getBytes());
+		System.out.println("Completed-> " + path );
 	}
 
-	private String getFileName(ProjectFileType fileType, String packageName, String className) {
+	public void createInterfaceJavaFile(ProjectFileType fileType, String packageName, String className, MethodSpec... methodSpecs)
+			throws IOException {
+
+		System.out.println("Going to create interface :" + packageName + className );
+		String content = createInterfaceFileWithContent(fileType,packageName, className, methodSpecs);
+		String fileName = getFileName(fileType, packageName, className);
+		Path path = Paths.get(fileName);
+
+		Files.createDirectories(path.getParent());
+
+		Files.write(path, content.getBytes());
+		System.out.println("Completed-> " + path );
+	}
+
+	public String getFileName(ProjectFileType fileType, String packageName, String className) {
 		String finalPackageName = packageName + "." +fileType.getPackageName();
 		String finalClassName = className + fileType.getClassSuffix();
 		System.out.println(finalPackageName);

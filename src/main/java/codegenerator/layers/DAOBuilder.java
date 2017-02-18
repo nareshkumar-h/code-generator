@@ -42,6 +42,10 @@ public class DAOBuilder extends CommonFileGenerator {
 				.build();
 		classBuilder.addField(fieldSpec);
 
+		for (MethodSpec methodSpec : methodSpecs) {
+			classBuilder.addMethod(methodSpec);
+		}
+
 
 		return classBuilder;
 
