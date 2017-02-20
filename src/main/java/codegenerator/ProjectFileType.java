@@ -6,7 +6,7 @@ public enum ProjectFileType {
 	RESTCONTROLLER("controller.rest", "Controller"),
 	VALIDATOR("validator", "Validator"),
 	DAO("dao", "DAO", "interface"),
-	DAO_IMPL("dao.impl", "Impl"),SERVICE("service", "Service", "interface"),
+	DAO_IMPL("dao.impl", "DAOImpl"),SERVICE("service", "Service", "interface"),
 	SERVICE_IMPL("service.impl", "ServiceImpl"),DTO("dto", "DTO"),
 	REPOSITORY("dao", "Repository","interface"),
 	REPOSITORY_IMPL("dao.impl", "RepositoryImpl"),

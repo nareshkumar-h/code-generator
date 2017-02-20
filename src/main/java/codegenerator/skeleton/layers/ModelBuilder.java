@@ -1,5 +1,7 @@
 package codegenerator.skeleton.layers;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -21,6 +23,7 @@ public class ModelBuilder extends ClassSkeleton{
 
 		classBuilder.addAnnotation(Data.class);
 		classBuilder.addAnnotation(Entity.class);
+		classBuilder.addSuperinterface(Serializable.class);
 		classBuilder.addAnnotation(
 				AnnotationSpec.builder(Table.class).addMember("name", "\"" + className.toLowerCase() + "s\"").build());
 
